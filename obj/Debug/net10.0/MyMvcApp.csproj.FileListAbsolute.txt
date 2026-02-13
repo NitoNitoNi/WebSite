@@ -292,3 +292,4 @@
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/compressed/mv7rr9borb-{0}-ux6qxyh4j2-ux6qxyh4j2.gz
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Npgsql.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/MyMvcApp.sourcelink.json
