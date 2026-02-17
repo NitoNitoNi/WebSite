@@ -3,8 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace MyMvcApp.Models;
-
+namespace MyMvcApp.Models.DataModel;
 public partial class Employee
 {
     public int? emp_id { get; set; }

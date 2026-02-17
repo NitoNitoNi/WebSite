@@ -16,6 +16,29 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    try
+    {
+        if (context.Database.CanConnect())
+        {
+            Console.WriteLine("Успешное подключение к БД");
+            context.Database.Migrate();
+            Console.WriteLine("Миграции применены, таблицы созданы");
+        }
+        else
+        {
+            Console.WriteLine("Не удалось подключиться к БД");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ошибка при работе с БД {ex.Message}");
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

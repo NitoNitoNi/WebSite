@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
 
-namespace MyMvcApp.Models;
-
+namespace MyMvcApp.Models.DataModel;
 public partial class Deparment
 {
     public int dep_id { get; set; }

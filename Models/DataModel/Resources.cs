@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace MyMvcApp.Models;
+namespace MyMvcApp.Models.DataModel;
 
 public partial class Resources
 {
