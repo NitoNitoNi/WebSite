@@ -1,0 +1,65 @@
+@using Microsoft.AspNetCore.Authorization
+
+@{
+    ViewData["Title"] = "Список сотрудников";
+}
+
+    @model List<MyMvcApp.Models.DataModel.Employee>
+
+    <h2>Список сотрудников</h2>
+
+@if(TempData["SuccessMessage"] !=null)
+{
+    <div>@TempData["SuccessMessage"]</div>
+}
+@if(TempData["ErrorMessage"] !=null)
+{
+    <div>@TempData["ErrorMessage"]</div>
+}
+
+
+    <p>
+        <a href="/Employee/Create">Добавить</a>
+    </p>
+
+
+    <div class="employee-list">
+        @foreach (var employee in Model){
+            <div class="employee-item">
+                <div class="employee-photo">
+                    <img src="~/images/avatar-user-profile.png" alt="avatar-user-profile" />
+                </div>
+                <div class="employee-info">
+                    <div class="emloyee-position">@employee.position</div>
+                    <div class="emloyee-name">@employee.emp_name</div>
+                </div>
+                <div class="employee-actions">
+                    <a href="/Employee/Edit?id=@employee.emp_id" class="btn-edit">Редактировать</a>
+                    <a href="/Employee/Delete?id=@employee.emp_id" class="btn-delete" onclick="return confirm('Вы уверены, что хотите удалить этого сотрудника?')">Удалить</a>
+                </div>
+            </div>
+        }
+    </div>
+
+
+    <table class="table">
+    <thead>
+    <tr>
+    <th>ФИО</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (MyMvcApp.Models.DataModel.Employee employee in Model)
+    {
+        <tr>
+        <td>@employee.emp_name</td>
+        <td>
+        <span><a href="/Deparment/Edit?id=@employee.emp_id">Редактировать</a></span>
+        <span><a href="/Deparment/Delete?id=@employee.emp_id">Удалить</a></span>
+        </td>
+        </tr>
+    }
+    </tbody>
+    </table>
+
+

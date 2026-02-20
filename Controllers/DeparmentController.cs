@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Models.Interfaces; 
 using MyMvcApp.Models.DataModel;
+using Humanizer;
 
 namespace MyMvcApp.Controllers
 {
@@ -53,7 +54,20 @@ namespace MyMvcApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            await deparmentProvider.DeleteDeparment(id);
+            try
+            {
+                await deparmentProvider.DeleteDeparment(id);
+                TempData["SuccessMessage"]="Отделение успешно удалено";
+            }
+            catch (InvalidOperationException ex)
+            {
+                TempData["ErrorMessage"]=ex.Message;           
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"]="Произошла ошибка при удалении:" + ex.Message;
+            }
+
             return RedirectToAction("ListDeparment");
         }
     }

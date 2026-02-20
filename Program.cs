@@ -17,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IDBDeparment,DeparmentProvider>();
+builder.Services.AddScoped<IDBEmployee,EmployeeProvider>();
 
 var app = builder.Build();
 

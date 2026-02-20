@@ -12,10 +12,7 @@
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.AspNetCore.Identity.UI.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.Build.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.Build.Framework.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.Build.Tasks.Core.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.Build.Utilities.Core.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.CodeAnalysis.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.CodeAnalysis.CSharp.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
@@ -29,7 +26,6 @@
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.Sqlite.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.Extensions.DependencyModel.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.NET.StringTools.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Mono.TextTemplating.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Newtonsoft.Json.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/SQLitePCLRaw.batteries_v2.dll
@@ -41,13 +37,6 @@
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Composition.Hosting.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Composition.Runtime.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Composition.TypedParts.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Configuration.ConfigurationManager.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Formats.Nrbf.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Reflection.MetadataLoadContext.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Resources.Extensions.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Security.Cryptography.ProtectedData.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Security.Permissions.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/System.Windows.Extensions.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/cs/Microsoft.CodeAnalysis.resources.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/de/Microsoft.CodeAnalysis.resources.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/es/Microsoft.CodeAnalysis.resources.dll
@@ -136,7 +125,6 @@
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/runtimes/win-arm64/native/e_sqlite3.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/runtimes/win-x64/native/e_sqlite3.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/runtimes/win-x86/native/e_sqlite3.dll
-/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/runtimes/win/lib/net9.0/System.Windows.Extensions.dll
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/MyMvcApp.csproj.AssemblyReference.cache
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/rpswa.dswa.cache.json
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/MyMvcApp.GeneratedMSBuildEditorConfig.editorconfig
@@ -289,8 +277,9 @@
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/ref/MyMvcApp.dll
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/compressed/wfyy6uheah-{0}-dbx1m6a3on-dbx1m6a3on.gz
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/compressed/pkbpgu8f33-{0}-dbx1m6a3on-dbx1m6a3on.gz
-/home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/compressed/mv7rr9borb-{0}-ux6qxyh4j2-ux6qxyh4j2.gz
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Npgsql.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/MyMvcApp.sourcelink.json
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Dapper.dll
+/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Microsoft.VisualStudio.SolutionPersistence.dll
+/home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/compressed/mv7rr9borb-{0}-uezwekl71u-uezwekl71u.gz

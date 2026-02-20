@@ -6,7 +6,17 @@
 
     @model List<MyMvcApp.Models.DataModel.Deparment>
 
-    <h2>Список пациентов</h2>
+    <h2>Список отделений</h2>
+
+@if(TempData["SuccessMessage"] !=null)
+{
+    <div>@TempData["SuccessMessage"]</div>
+}
+@if(TempData["ErrorMessage"] !=null)
+{
+    <div>@TempData["ErrorMessage"]</div>
+}
+
 
     <p>
         <a href="/Deparment/Create">Добавить</a>
