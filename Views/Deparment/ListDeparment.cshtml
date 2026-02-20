@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Authorization
+
+@{
+    ViewData["Title"] = "Список отделений";
+}
+
+    @model List<MyMvcApp.Models.DataModel.Deparment>
+
+    <h2>Список пациентов</h2>
+
+    <p>
+        <a href="/Deparment/Create">Добавить</a>
+    </p>
+
+    <table class="table">
+    <thead>
+    <tr>
+    <th>Отделение</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (MyMvcApp.Models.DataModel.Deparment deparment in Model)
+    {
+        <tr>
+        <td>@deparment.dep_name</td>
+        <td>
+        <span><a href="/Deparment/Edit?id=@deparment.dep_id">Редактировать</a></span>
+        <span><a href="/Deparment/Delete?id=@deparment.dep_id">Удалить</a></span>
+        </td>
+        </tr>
+    }
+    </tbody>
+    </table>
+
+

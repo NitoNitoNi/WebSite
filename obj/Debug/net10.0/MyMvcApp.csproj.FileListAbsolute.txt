@@ -293,3 +293,4 @@
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Npgsql.dll
 /home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /home/nito/Project/WedSite/MyMvcApp/obj/Debug/net10.0/MyMvcApp.sourcelink.json
+/home/nito/Project/WedSite/MyMvcApp/bin/Debug/net10.0/Dapper.dll

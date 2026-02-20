@@ -1,0 +1,27 @@
+@using Microsoft.AspNetCore.Authorization
+
+@{
+	ViewData["Title"] = "Добавление/Редактирование отделения";
+}
+
+@model MyMvcApp.Models.DataModel.Deparment
+<h2>@(Model.dep_id == 0 ? "Добавление" : "Редактирование") отделения</h2>
+<div class="list">
+
+    <form method="post" action="/Deparment/EditPost/">
+        <div>
+            <input type="hidden" name="dep_id" value="@Model.dep_id" />
+            <label>Название отделения</label>
+            <input name="dep_name" value="@Model.dep_name" />
+            @Html.ValidationMessageFor(m=>m.dep_name)
+        </div>
+        
+        <div>
+            <button class="dropbtn">Сохранить</button>
+        </div>
+    </form>
+</div>
+
+	
+
+
