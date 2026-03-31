@@ -38,16 +38,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVwYXJtZW50L0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Progect/WebSite/Views/Deparment/ListDeparment.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVwYXJtZW50L0xpc3REZXBhcm1lbnQuY3NodG1s
+[/home/nito/Progect/WebSite/Views/Deparment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVwYXJtZW50L0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nito/Progect/WebSite/Views/Employee/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbG95ZWUvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Progect/WebSite/Views/Employee/ListEmployee.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbG95ZWUvTGlzdEVtcGxveWVlLmNzaHRtbA==
+[/home/nito/Progect/WebSite/Views/Employee/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbG95ZWUvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nito/Progect/WebSite/Views/Home/Index.cshtml]
@@ -60,6 +60,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/nito/Progect/WebSite/Views/Home/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nito/Progect/WebSite/Views/Resources/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzb3VyY2VzL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/nito/Progect/WebSite/Views/Resources/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzb3VyY2VzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/nito/Progect/WebSite/Views/Shared/Error.cshtml]

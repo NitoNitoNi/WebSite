@@ -22,7 +22,9 @@ public partial class Accounts
     [DefaultValue(true)]
     public bool? IsActive { get; set; }
     public int ResourceId { get; set; }
+    [NotMapped]
     public Resources resources { get; set; } = null!;
     public int EmployeeId { get; set; }
+    [NotMapped]
     public Employee employees { get; set; } = null!;
 }

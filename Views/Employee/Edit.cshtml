@@ -1,0 +1,62 @@
+@model MyMvcApp.Models.DataModel.Employee
+@{
+    ViewData["Title"] = (Model.EmployeeId == 0 ? "Добавление" : "Редактирование") + " сотрудника";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" action="/Employee/EditPost">
+    <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
+    
+    <div>
+        <label>ФИО сотрудника</label>
+        <input type="text" name="Name" value="@Model.Name" />
+    </div>
+    
+    <div>
+        <label>Должность</label>
+        <input type="text" name="Position" value="@Model.Position" />
+    </div>
+    
+    <div>
+        <label>Описание</label>
+        <textarea name="Description">@Model.Description</textarea>
+    </div>
+    
+    <div>
+        <label>Активен</label>
+        <input type="checkbox" name="IsActive" value="true" @(Model.IsActive == true ? "checked" : "") />
+        <input type="hidden" name="IsActive" value="false" />
+    </div>
+    
+    <div>
+        <label>Отделение</label>
+        <select name="DeparmentId">
+            <option value="">Выберите отделение</option>
+            @if (ViewBag.Departments != null)
+            {
+                var depts = ViewBag.Departments as List<MyMvcApp.Models.DataModel.Deparment>;
+                if (depts != null)
+                {
+                    foreach (var dept in depts)
+                    {
+                        if (Model.DeparmentId == dept.DeparmentId)
+                        {
+                            <option value="@dept.DeparmentId" selected>@dept.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@dept.DeparmentId">@dept.Name</option>
+                        }
+                    }
+                }
+            }
+        </select>
+        <span style="color: red;">@Html.ValidationMessageFor(m => m.DeparmentId)</span>
+    </div>
+    
+    <div>
+        <button type="submit">Сохранить</button>
+        <a href="/Employee/Index">Отмена</a>
+    </div>
+</form>

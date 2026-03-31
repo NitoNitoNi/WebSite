@@ -2,6 +2,7 @@ using System.Data.SqlTypes;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMvcApp.Models.DataModel;
 public partial class Employee
@@ -22,6 +23,7 @@ public partial class Employee
     public bool? IsActive { get; set; }
 
     public int DeparmentId { get; set; }
+    [NotMapped]
     public Deparment Deparment { get; set; } = null!;
     public List<Accounts> Accounts { get; set; } = new List<Accounts>();
 }

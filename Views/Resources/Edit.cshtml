@@ -1,0 +1,37 @@
+@model MyMvcApp.Models.DataModel.Resources
+
+@{
+    ViewData["Title"] = (Model.ResourcesId == 0 ? "Добавление" : "Редактирование") + " ресурса";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" action="/Resources/EditPost">
+    <input type="hidden" name="ResourcesId" value="@Model.ResourcesId" />
+    
+    <div>
+        <label>Название</label>
+        <input type="text" name="Name" value="@Model.Name" required />
+    </div>
+    
+    <div>
+        <label>URL</label>
+        <input type="url" name="Url" value="@Model.Url" />
+    </div>
+    
+    <div>
+        <label>Описание</label>
+        <textarea name="Description">@Model.Description</textarea>
+    </div>
+    
+    <div>
+        <label>Активен</label>
+        <input type="checkbox" name="IsActive" value="true" @(Model.IsActive == true ? "checked" : "") />
+        <input type="hidden" name="IsActive" value="false" />
+    </div>
+    
+    <div>
+        <button type="submit">Сохранить</button>
+        <a href="/Resources/Index">Отмена</a>
+    </div>
+</form>

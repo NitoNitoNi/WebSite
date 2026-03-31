@@ -14,10 +14,10 @@ namespace MyMvcApp.Controllers
             this.deparmentProvider = deparmentProvider;
         }
 
-        public async Task<IActionResult> ListDeparment()
+        public async Task<IActionResult> Index()
         {
             var result = await deparmentProvider.GetDeparments();
-            result = result.OrderBy(d=>d.dep_name).ToList();
+            result = result.OrderBy(d=>d.Name).ToList();
             return View(result);
         }
 
@@ -34,13 +34,13 @@ namespace MyMvcApp.Controllers
             if (ModelState.IsValid)
             {
                 // Проверка на null для обязательных полей
-                if (string.IsNullOrEmpty(deparment.dep_name))
+                if (string.IsNullOrEmpty(deparment.Name))
                 {
                     ModelState.AddModelError("", "Не все обязательные поля заполнены");
                     return View("Edit",deparment);
                 }
                 await deparmentProvider.SaveDeparment(deparment);
-                return RedirectToAction("ListDeparment");
+                return RedirectToAction("Index");
             }
             return View("Edit",deparment);
         }
@@ -68,7 +68,7 @@ namespace MyMvcApp.Controllers
                 TempData["ErrorMessage"]="Произошла ошибка при удалении:" + ex.Message;
             }
 
-            return RedirectToAction("ListDeparment");
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,6 +1,4 @@
-using System;
 using MyMvcApp.Models.DataModel;
-
 
 namespace MyMvcApp.Models.Interfaces
 {

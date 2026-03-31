@@ -26,9 +26,6 @@
     <div class="employee-list">
         @foreach (var employee in Model){
             <div class="employee-item">
-                <div class="employee-photo">
-                    <img src="~/images/avatar-user-profile.png" alt="avatar-user-profile" />
-                </div>
                 <div class="employee-info">
                     <div class="emloyee-position">@employee.Position</div>
                     <div class="emloyee-name">@employee.Name</div>
@@ -41,25 +38,5 @@
         }
     </div>
 
-
-    <table class="table">
-    <thead>
-    <tr>
-    <th>ФИО</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (MyMvcApp.Models.DataModel.Employee employee in Model)
-    {
-        <tr>
-        <td>@employee.Name</td>
-        <td>
-        <span><a href="/Deparment/Edit?id=@employee.EmployeeId">Редактировать</a></span>
-        <span><a href="/Deparment/Delete?id=@employee.EmployeeId">Удалить</a></span>
-        </td>
-        </tr>
-    }
-    </tbody>
-    </table>
 
 

@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using MyMvcApp.Models.Implementation;
 using MyMvcApp.Models.Interfaces;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IDBDeparment,DeparmentProvider>();
 builder.Services.AddScoped<IDBEmployee,EmployeeProvider>();
+builder.Services.AddScoped<IBDResources, ResourcesProvider>();
 
 var app = builder.Build();
 

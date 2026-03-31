@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Authorization
+
+@{
+    ViewData["Title"] = "Список ресурсов";
+}
+
+@model List<MyMvcApp.Models.DataModel.Resources>
+
+<h2>Список отделений</h2>
+
+@if(TempData["SuccessMessage"] !=null)
+{
+    <div>@TempData["SuccessMessage"]</div>
+}
+@if(TempData["ErrorMessage"] !=null)
+{
+    <div>@TempData["ErrorMessage"]</div>
+}
+
+
+    <p>
+        <a href="/Resources/Create">Добавить</a>
+    </p>
+
+    <table class="table">
+    <thead>
+    <tr>
+    <th>Отделение</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (MyMvcApp.Models.DataModel.Resources resources in Model)
+    {
+        <tr>
+        <td>@resources.Name</td>
+        <td>@resources.Url</td>
+        <td>@resources.IsActive</td>
+        <td>
+        <span><a href="/Resources/Edit?id=@resources.ResourcesId">Редактировать</a></span>
+        <span><a href="/Resources/Delete?id=@resources.ResourcesId">Удалить</a></span>
+        </td>
+        </tr>
+    }
+    </tbody>
+    </table>
+
+
