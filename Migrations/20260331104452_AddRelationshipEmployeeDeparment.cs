@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyMvcApp.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreatePostgreSql : Migration
+    public partial class AddRelationshipEmployeeDeparment : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,6 +49,35 @@ namespace MyMvcApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Deparment",
+                columns: table => new
+                {
+                    DeparmentId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Deparment", x => x.DeparmentId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Resources",
+                columns: table => new
+                {
+                    ResourcesId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
+                    Url = table.Column<string>(type: "character varying(2048)", maxLength: 2048, nullable: true),
+                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Resources", x => x.ResourcesId);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,6 +186,69 @@ namespace MyMvcApp.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
+                    Position = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: true),
+                    DeparmentId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_Employees_Deparment_DeparmentId",
+                        column: x => x.DeparmentId,
+                        principalTable: "Deparment",
+                        principalColumn: "DeparmentId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Accounts",
+                columns: table => new
+                {
+                    AccountsId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Login = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Pass = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: true),
+                    ResourceId = table.Column<int>(type: "integer", nullable: false),
+                    EmployeeId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accounts", x => x.AccountsId);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Accounts_Resources_ResourceId",
+                        column: x => x.ResourceId,
+                        principalTable: "Resources",
+                        principalColumn: "ResourcesId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_EmployeeId",
+                table: "Accounts",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_ResourceId",
+                table: "Accounts",
+                column: "ResourceId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -193,11 +285,19 @@ namespace MyMvcApp.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_DeparmentId",
+                table: "Employees",
+                column: "DeparmentId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Accounts");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -214,10 +314,19 @@ namespace MyMvcApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Resources");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Deparment");
         }
     }
 }

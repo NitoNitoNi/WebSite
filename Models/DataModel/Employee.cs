@@ -6,19 +6,22 @@ using System.ComponentModel;
 namespace MyMvcApp.Models.DataModel;
 public partial class Employee
 {
-    public int? emp_id { get; set; }
+    [Key]
+    public int EmployeeId { get; set; }
 
     [StringLength(150)]
-    public string? emp_name { get; set; } = null!;
+    public string? Name { get; set; } = null!;
 
     [StringLength(50)]
-    public string position { get; set; } = null!;
+    public string Position { get; set; } = null!;
 
     [StringLength(500)]
-    public string? description { get; set; }
+    public string? Description { get; set; }
     
     [DefaultValue(true)]
     public bool? IsActive { get; set; }
 
-    public List<Deparment> deparments { get; set; } = null!;
+    public int DeparmentId { get; set; }
+    public Deparment Deparment { get; set; } = null!;
+    public List<Accounts> Accounts { get; set; } = new List<Accounts>();
 }

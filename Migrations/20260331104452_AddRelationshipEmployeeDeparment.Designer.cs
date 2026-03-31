@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyMvcApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260220110800_Initial")]
-    partial class Initial
+    [Migration("20260331104452_AddRelationshipEmployeeDeparment")]
+    partial class AddRelationshipEmployeeDeparment
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -225,6 +225,126 @@ namespace MyMvcApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Accounts", b =>
+                {
+                    b.Property<int>("AccountsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AccountsId"));
+
+                    b.Property<DateTime>("Data")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Pass")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("ResourceId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("AccountsId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ResourceId");
+
+                    b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Deparment", b =>
+                {
+                    b.Property<int>("DeparmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("DeparmentId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.HasKey("DeparmentId");
+
+                    b.ToTable("Deparment");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Employee", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EmployeeId"));
+
+                    b.Property<int>("DeparmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.HasIndex("DeparmentId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Resources", b =>
+                {
+                    b.Property<int>("ResourcesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ResourcesId"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("Url")
+                        .HasMaxLength(2048)
+                        .HasColumnType("character varying(2048)");
+
+                    b.HasKey("ResourcesId");
+
+                    b.ToTable("Resources");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -274,6 +394,51 @@ namespace MyMvcApp.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Accounts", b =>
+                {
+                    b.HasOne("MyMvcApp.Models.DataModel.Employee", "employees")
+                        .WithMany("Accounts")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyMvcApp.Models.DataModel.Resources", "resources")
+                        .WithMany("Accounts")
+                        .HasForeignKey("ResourceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("employees");
+
+                    b.Navigation("resources");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Employee", b =>
+                {
+                    b.HasOne("MyMvcApp.Models.DataModel.Deparment", "Deparment")
+                        .WithMany("Employees")
+                        .HasForeignKey("DeparmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Deparment");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Deparment", b =>
+                {
+                    b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Employee", b =>
+                {
+                    b.Navigation("Accounts");
+                });
+
+            modelBuilder.Entity("MyMvcApp.Models.DataModel.Resources", b =>
+                {
+                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }

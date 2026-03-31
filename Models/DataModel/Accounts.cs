@@ -7,20 +7,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MyMvcApp.Models.DataModel;
 public partial class Accounts
 {
-    public int? acc_id { get; set; }
+    [Key]
+    public int AccountsId { get; set; }
 
     [StringLength(20)]
-    public string login { get; set; } = null!;
+    public string Login { get; set; } = null!;
 
     [StringLength(20)]
-    public string pass { get; set; } = null!;
+    public string Pass { get; set; } = null!;
 
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public DateTime data { get; set; }
+    public DateTime Data { get; set; }
     
     [DefaultValue(true)]
     public bool? IsActive { get; set; }
-
-    public List<Resources> resources { get; set; } = null!;
-    public List<Employee> employees { get; set; } = null!;
+    public int ResourceId { get; set; }
+    public Resources resources { get; set; } = null!;
+    public int EmployeeId { get; set; }
+    public Employee employees { get; set; } = null!;
 }

@@ -25,7 +25,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var result = await connection.QueryAsync<Employee>("select emp_id, emp_name, position, description, IsActive, dep_id from Employee");
+                var result = await connection.QueryAsync<Employee>("select EmployeeId, Name, Position, Description, IsActive, Deparment from Employee");
                 return result.ToList();
             }
         }
@@ -34,7 +34,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var sql = "select emp_id, emp_name, position, description, IsActive, dep_id from Employee where emp_id = @id";
+                var sql = "select EmployeeId, Name, Position, Description, IsActive, Deparment from Employee where EmployeeId = @id";
                 return await connection.QueryFirstOrDefaultAsync<Employee>(sql, new { id });
             }
         }
@@ -43,7 +43,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var sql = "update Employee set emp_name = @emp_name, position = @position, description = @description, IsActive = @IsActive, dep_id = @Deparment.dep_id where emp_id = @emp_id";
+                var sql = "update Employee set Name = @Name, Position = @Position, Description = @Description, IsActive = @IsActive, Deparment = @Deparment.DeparmentId where EmployeeId = @EmployeeId";
                 int rows = await connection.ExecuteAsync(sql,employee);
                 return rows > 1;
             }
@@ -52,7 +52,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var check = "select count(*) from account where emp_id = @emp_id"; 
+                var check = "select count(*) from Account where EmployeeId = @EmployeeId"; 
                 int accountCount = await connection.ExecuteScalarAsync<int>(check,new {emp_id = id});
 
                 if (accountCount > 0)
@@ -60,8 +60,8 @@ namespace MyMvcApp.Models.Implementation
                     throw new InvalidOperationException($"Невозмождно удалить отделение, так как в нем есть {accountCount} аккаунтов");
                 }
 
-                var sql = "delete from Employee where emp_id = @emp_id";
-                int rows = await connection.ExecuteAsync(sql,new {emp_id = id});
+                var sql = "delete from Employee where EmployeeId = @EmployeeId";
+                int rows = await connection.ExecuteAsync(sql,new {EmployeeId = id});
                 return rows > 0;
             }
         }
@@ -69,14 +69,14 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var sql =  "INSERT INTO Employee (emp_name) values (@emp_name)";
+                var sql =  "INSERT INTO Employee (Name) values (@Name)";
                 int rows = await connection.ExecuteAsync(sql,employee);
                 return rows > 1;
             }
         }
         public async Task<bool> SaveEmployee(Employee employee)
         {
-            return employee.emp_id == 0 ? await AddEmployee(employee) : await UpdateEmployee(employee);
+            return employee.EmployeeId == 0 ? await AddEmployee(employee) : await UpdateEmployee(employee);
         }
     }
 }

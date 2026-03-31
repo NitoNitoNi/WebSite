@@ -19,69 +19,69 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = MyMvcApp
 build_property.RootNamespace = MyMvcApp
-build_property.ProjectDir = /home/nito/Project/WedSite/MyMvcApp/
+build_property.ProjectDir = /home/nito/Progect/WebSite/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/nito/Project/WedSite/MyMvcApp
+build_property.MSBuildProjectDirectory = /home/nito/Progect/WebSite
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Areas/Identity/Pages/_ViewStart.cshtml]
+[/home/nito/Progect/WebSite/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Deparment/Edit.cshtml]
+[/home/nito/Progect/WebSite/Views/Deparment/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVwYXJtZW50L0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Deparment/ListDeparment.cshtml]
+[/home/nito/Progect/WebSite/Views/Deparment/ListDeparment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGVwYXJtZW50L0xpc3REZXBhcm1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Employee/Edit.cshtml]
+[/home/nito/Progect/WebSite/Views/Employee/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbG95ZWUvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Employee/ListEmployee.cshtml]
+[/home/nito/Progect/WebSite/Views/Employee/ListEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRW1wbG95ZWUvTGlzdEVtcGxveWVlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Home/Index.cshtml]
+[/home/nito/Progect/WebSite/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Home/Privacy.cshtml]
+[/home/nito/Progect/WebSite/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Home/Register.cshtml]
+[/home/nito/Progect/WebSite/Views/Home/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Shared/Error.cshtml]
+[/home/nito/Progect/WebSite/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Shared/_LoginPartial.cshtml]
+[/home/nito/Progect/WebSite/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/home/nito/Progect/WebSite/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/_ViewImports.cshtml]
+[/home/nito/Progect/WebSite/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/_ViewStart.cshtml]
+[/home/nito/Progect/WebSite/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/nito/Project/WedSite/MyMvcApp/Views/Shared/_Layout.cshtml]
+[/home/nito/Progect/WebSite/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xlfqnswz7s

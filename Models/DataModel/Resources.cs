@@ -7,18 +7,21 @@ namespace MyMvcApp.Models.DataModel;
 
 public partial class Resources
 {
-    public int? res_id { get; set; }
+    [Key]
+    public int ResourcesId { get; set; }
 
     [StringLength(150)]
-    public string? res_name { get; set; } = null!;
+    public string? Name { get; set; } = null!;
 
     [Url]
     [StringLength(2048)]
-    public string? url { get; set; }
+    public string? Url { get; set; }
 
     [StringLength(500)]
-    public string? description { get; set; }
+    public string? Description { get; set; }
     
     [DefaultValue(true)]
     public bool? IsActive { get; set; }
+
+    public List<Accounts> Accounts { get; set; } = new List<Accounts>();
 }

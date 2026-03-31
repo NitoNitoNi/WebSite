@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mQcuuURzkzE=",
+  "dgSpecHash": "peToT3ZgWkA=",
   "success": true,
-  "projectFilePath": "/home/nito/Project/WedSite/MyMvcApp/MyMvcApp.csproj",
+  "projectFilePath": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
   "expectedPackageFiles": [
     "/home/nito/.nuget/packages/dapper/2.1.66/dapper.2.1.66.nupkg.sha512",
     "/home/nito/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
@@ -57,7 +57,7 @@
     "/home/nito/.nuget/packages/system.composition.hosting/9.0.0/system.composition.hosting.9.0.0.nupkg.sha512",
     "/home/nito/.nuget/packages/system.composition.runtime/9.0.0/system.composition.runtime.9.0.0.nupkg.sha512",
     "/home/nito/.nuget/packages/system.composition.typedparts/9.0.0/system.composition.typedparts.9.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.3/microsoft.aspnetcore.app.ref.10.0.3.nupkg.sha512"
+    "/home/nito/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.4/microsoft.aspnetcore.app.ref.10.0.4.nupkg.sha512"
   ],
   "logs": []
 }

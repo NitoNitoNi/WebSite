@@ -25,7 +25,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var result = await connection.QueryAsync<Deparment>("select dep_id, dep_name from Deparment");
+                var result = await connection.QueryAsync<Deparment>("SELECT \"DeparmentId\", \"Name\" FROM \"Deparment\"");
                 return result.ToList();
             }
         }
@@ -34,7 +34,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var sql = "select dep_id, dep_name from Deparment where dep_id = @id";
+                var sql = "SELECT \"DeparmentId\", \"Name\" FROM \"Deparment\" WHERE \"DeparmentId\" = @id";
                 return await connection.QueryFirstOrDefaultAsync<Deparment>(sql, new { id });
             }
         }
@@ -43,7 +43,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var sql = "update Deparment set dep_name = @dep_name where dep_id = @dep_id";
+                var sql = "UPDATE \"Deparment\" SET \"Name\" = @Name WHERE \"DeparmentId\" = @DeparmentId";
                 int rows = await connection.ExecuteAsync(sql,deparment);
                 return rows > 1;
             }
@@ -52,16 +52,16 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var check = "select count(*) from employee where dep_id = @dep_id"; 
-                int employeeCount = await connection.ExecuteScalarAsync<int>(check,new {dep_id = id});
+                var check = "SELECT COUNT(*) FROM \"Employees\" WHERE \"Deparment\" = @DeparmentId";
+                int employeeCount = await connection.ExecuteScalarAsync<int>(check,new {DeparmentId = id});
 
                 if (employeeCount > 0)
                 {
                     throw new InvalidOperationException($"Невозмождно удалить отделение, так как в нем есть {employeeCount} сотрудников");
                 }
 
-                var sql = "delete from Deparment where dep_id = @dep_id";
-                int rows = await connection.ExecuteAsync(sql,new {dep_id = id});
+                var sql = "DELETE FROM \"Deparment\" WHERE \"DeparmentId\" = @DeparmentId";
+                int rows = await connection.ExecuteAsync(sql,new {DeparmentId = id});
                 return rows > 0;
             }
         }
@@ -69,14 +69,14 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var sql =  "INSERT INTO Deparment (dep_name) values (@dep_name)";
+                var sql =  "INSERT INTO \"Deparment\" (\"Name\") VALUES (@Name)";
                 int rows = await connection.ExecuteAsync(sql,deparment);
                 return rows > 1;
             }
         }
         public async Task<bool> SaveDeparment(Deparment deparment)
         {
-            return deparment.dep_id == 0 ? await AddDeparment(deparment) : await UpdateDeparment(deparment);
+            return deparment.DeparmentId == 0 ? await AddDeparment(deparment) : await UpdateDeparment(deparment);
         }
     }
 }

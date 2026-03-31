@@ -32,10 +32,10 @@
     @foreach (MyMvcApp.Models.DataModel.Deparment deparment in Model)
     {
         <tr>
-        <td>@deparment.dep_name</td>
+        <td>@deparment.Name</td>
         <td>
-        <span><a href="/Deparment/Edit?id=@deparment.dep_id">Редактировать</a></span>
-        <span><a href="/Deparment/Delete?id=@deparment.dep_id">Удалить</a></span>
+        <span><a href="/Deparment/Edit?id=@deparment.DeparmentId">Редактировать</a></span>
+        <span><a href="/Deparment/Delete?id=@deparment.DeparmentId">Удалить</a></span>
         </td>
         </tr>
     }

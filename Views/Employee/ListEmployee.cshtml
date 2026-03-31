@@ -30,12 +30,12 @@
                     <img src="~/images/avatar-user-profile.png" alt="avatar-user-profile" />
                 </div>
                 <div class="employee-info">
-                    <div class="emloyee-position">@employee.position</div>
-                    <div class="emloyee-name">@employee.emp_name</div>
+                    <div class="emloyee-position">@employee.Position</div>
+                    <div class="emloyee-name">@employee.Name</div>
                 </div>
                 <div class="employee-actions">
-                    <a href="/Employee/Edit?id=@employee.emp_id" class="btn-edit">Редактировать</a>
-                    <a href="/Employee/Delete?id=@employee.emp_id" class="btn-delete" onclick="return confirm('Вы уверены, что хотите удалить этого сотрудника?')">Удалить</a>
+                    <a href="/Employee/Edit?id=@employee.EmployeeId" class="btn-edit">Редактировать</a>
+                    <a href="/Employee/Delete?id=@employee.EmployeeId" class="btn-delete" onclick="return confirm('Вы уверены, что хотите удалить этого сотрудника?')">Удалить</a>
                 </div>
             </div>
         }
@@ -52,10 +52,10 @@
     @foreach (MyMvcApp.Models.DataModel.Employee employee in Model)
     {
         <tr>
-        <td>@employee.emp_name</td>
+        <td>@employee.Name</td>
         <td>
-        <span><a href="/Deparment/Edit?id=@employee.emp_id">Редактировать</a></span>
-        <span><a href="/Deparment/Delete?id=@employee.emp_id">Удалить</a></span>
+        <span><a href="/Deparment/Edit?id=@employee.EmployeeId">Редактировать</a></span>
+        <span><a href="/Deparment/Delete?id=@employee.EmployeeId">Удалить</a></span>
         </td>
         </tr>
     }

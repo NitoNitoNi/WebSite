@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/nito/Project/WedSite/MyMvcApp/MyMvcApp.csproj": {}
+    "/home/nito/Progect/WebSite/MyMvcApp.csproj": {}
   },
   "projects": {
-    "/home/nito/Project/WedSite/MyMvcApp/MyMvcApp.csproj": {
+    "/home/nito/Progect/WebSite/MyMvcApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/nito/Project/WedSite/MyMvcApp/MyMvcApp.csproj",
+        "projectUniqueName": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
         "projectName": "MyMvcApp",
-        "projectPath": "/home/nito/Project/WedSite/MyMvcApp/MyMvcApp.csproj",
+        "projectPath": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
         "packagesPath": "/home/nito/.nuget/packages/",
-        "outputPath": "/home/nito/Project/WedSite/MyMvcApp/obj/",
+        "outputPath": "/home/nito/Progect/WebSite/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/nito/.nuget/NuGet/NuGet.Config"
@@ -93,7 +93,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[10.0.3, 10.0.3]"
+              "version": "[10.0.4, 10.0.4]"
             }
           ],
           "frameworkReferences": {
@@ -104,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.104/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",

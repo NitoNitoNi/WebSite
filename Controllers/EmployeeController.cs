@@ -17,7 +17,7 @@ namespace MyMvcApp.Controllers
         public async Task<IActionResult> ListEmployee()
         {
             var result = await employeeProvider.GetEmployees();
-            result = result.OrderBy(d=>d.emp_name).ToList();
+            result = result.OrderBy(d=>d.Name).ToList();
             return View(result);
         }
 
@@ -34,7 +34,7 @@ namespace MyMvcApp.Controllers
             if (ModelState.IsValid)
             {
                 // Проверка на null для обязательных полей emp_id, emp_name, position, description, IsActive, dep_id
-                if (string.IsNullOrEmpty(employee.emp_name)|| string.IsNullOrEmpty(employee.position))
+                if (string.IsNullOrEmpty(employee.Name)|| string.IsNullOrEmpty(employee.Position))
                 {
                     ModelState.AddModelError("", "Не все обязательные поля заполнены");
                     return View("Edit",employee);
