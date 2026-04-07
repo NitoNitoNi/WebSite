@@ -1,0 +1,60 @@
+@model MyMvcApp.Models.DataModel.Accounts
+
+@{
+    ViewData["Title"] = (Model.AccountsId == 0 ? "Создание" : "Редактирование") + " аккаунта";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" action="/Accounts/EditPost">
+    <input type="hidden" name="AccountsId" value="@Model.AccountsId" />
+
+    <div>
+        <label>Логин</label>
+        <input type="text" name="Login" value="@Model.Login" required />
+    </div>
+
+    <div>
+        <label>Пароль</label>
+        <input type="text" name="Pass" value="@Model.Pass" required />
+    </div>
+
+    <div>
+        <label>Активен</label>
+        <input type="checkbox" name="IsActive" value="true" @(Model.IsActive == true ? "checked" : "") />
+        <input type="hidden" name="IsActive" value="false" />
+    </div>
+
+    <div>
+        <label>Сотрудник</label>
+        <select name="EmployeeId">
+            <option value="">Выберите сотрудника</option>
+            @if (ViewBag.Employees != null)
+            {
+                foreach (var emp in ViewBag.Employees)
+                {
+                    <option value="@emp.EmployeeId" selected="@(Model.EmployeeId == emp.EmployeeId)">@emp.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Ресурс</label>
+        <select name="ResourceId">
+            <option value="">Выберите ресурс</option>
+            @if (ViewBag.Resources != null)
+            {
+                foreach (var res in ViewBag.Resources)
+                {
+                    <option value="@res.ResourcesId" selected="@(Model.ResourceId == res.ResourcesId)">@res.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">Сохранить</button>
+        <a href="/Accounts/Index">Отмена</a>
+    </div>
+</form>

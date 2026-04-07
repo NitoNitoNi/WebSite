@@ -1,18 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Models.Interfaces; 
 using MyMvcApp.Models.DataModel;
+using WebSite.Models.DataModel;
 
 namespace MyMvcApp.Controllers
 {
     public class EmployeeController : Controller
     {
-        IDBEmployee employeeProvider;
-        IDBDeparment deparmentProvider;
+        private readonly IDBEmployee employeeProvider;
+        private readonly IDBDeparment deparmentProvider;
+        private readonly IDBAccount accountProvider;
 
-        public EmployeeController(IDBEmployee employeeProvider, IDBDeparment deparmentProvider)
+        public EmployeeController(IDBEmployee employeeProvider, IDBDeparment deparmentProvider, IDBAccount accountProvider)
         {
             this.employeeProvider = employeeProvider;
             this.deparmentProvider = deparmentProvider;
+            this.accountProvider = accountProvider;
         }
 
         public async Task<IActionResult> Index()
@@ -102,5 +105,32 @@ namespace MyMvcApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Profile(int id)
+        {
+            var employee = await employeeProvider.GetEmployee(id);
+            if (employee == null) return NotFound();
+
+            // Загружаем аккаунты
+            var accounts = await accountProvider.GetAccountsByEmployeeId(id);
+            employee.Accounts = accounts ?? new List<Accounts>();
+
+            // Загружаем отдел
+            if (employee.DeparmentId > 0)
+            {
+                var dept = await deparmentProvider.GetDeparment(employee.DeparmentId);
+                employee.Deparment = dept ?? new Deparment { Name = "Не указано" };
+            }
+            else
+            {
+                employee.Deparment = new Deparment { Name = "Не указано" };
+            }
+
+            return View(employee);
+        }
+
+
+
     }
 }

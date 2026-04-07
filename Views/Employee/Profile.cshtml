@@ -1,0 +1,95 @@
+@model MyMvcApp.Models.DataModel.Employee
+@{
+    ViewData["Title"] = $"Профиль сотрудника - {Model.Name}";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3>Информация о сотруднике</h3>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">ID сотрудника:</dt>
+                        <dd class="col-sm-8">@Model.EmployeeId</dd>
+
+                        <dt class="col-sm-4">ФИО:</dt>
+                        <dd class="col-sm-8">@Model.Name</dd>
+
+                        <dt class="col-sm-4">Должность:</dt>
+                        <dd class="col-sm-8">@Model.Position</dd>
+
+                        <dt class="col-sm-4">Отделение:</dt>
+                        <dd class="col-sm-8">@(Model.Deparment?.Name ?? "Не указано")</dd>
+
+                        <dt class="col-sm-4">Описание:</dt>
+                        <dd class="col-sm-8">@Model.Description</dd>
+
+                        <dt class="col-sm-4">Статус:</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.IsActive == true)
+                            {
+                                <span class="badge bg-success">Активен</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Неактивен</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header bg-info text-white">
+                    <h4>Аккаунты сотрудника</h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.Accounts != null && Model.Accounts.Any())
+                    {
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Название ресурса</th>
+                                    <th>Логин</th>
+                                    <th>Пароль</th>
+                                    <th>Дата создания</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var acc in Model.Accounts)
+                                {
+                                    <tr>
+                                        <td>@acc.ResourceId</td>
+                                        <td>@acc.Login</td>
+                                        <td>@acc.Pass</td>
+                                        <td>@acc.Data.ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td>@(acc.IsActive == true ? "Активен" : "Неактивен")</td>
+                                        <td>
+                                            <a href="/Accounts/Edit/@acc.AccountsId" class="btn btn-sm btn-primary">Ред.</a>
+                                            <a href="/Accounts/Delete/@acc.AccountsId" class="btn btn-sm btn-danger">Уд.</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">У сотрудника нет аккаунтов.</div>
+                    }
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <a href="/Employee/Edit/@Model.EmployeeId" class="btn btn-warning">Редактировать</a>
+                <a href="/Employee/Index" class="btn btn-secondary">Назад</a>
+                <a href="/Accounts/Create?employeeId=@Model.EmployeeId" class="btn btn-success">Создать аккаунт</a>
+            </div>
+        </div>
+    </div>
+</div>

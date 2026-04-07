@@ -22,14 +22,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithMany(d => d.Employees)
             .HasForeignKey(e => e.DeparmentId);
         
-        modelBuilder.Entity<Accounts>()
-            .HasOne(e => e.resources)
-            .WithMany(d => d.Accounts)
-            .HasForeignKey(e => e.ResourceId);
         
-        modelBuilder.Entity<Accounts>()
-            .HasOne(e => e.employees)
-            .WithMany(d => d.Accounts)
-            .HasForeignKey(e => e.EmployeeId);
     }
 }

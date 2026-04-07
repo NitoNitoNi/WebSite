@@ -16,15 +16,11 @@ public partial class Accounts
     [StringLength(20)]
     public string Pass { get; set; } = null!;
 
-    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public DateTime Data { get; set; }
+    public DateTime Data { get; set; } = DateTime.UtcNow;
     
     [DefaultValue(true)]
     public bool? IsActive { get; set; }
     public int ResourceId { get; set; }
-    [NotMapped]
-    public Resources resources { get; set; } = null!;
     public int EmployeeId { get; set; }
-    [NotMapped]
-    public Employee employees { get; set; } = null!;
+
 }

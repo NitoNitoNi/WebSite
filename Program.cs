@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
 using MyMvcApp.Models.Implementation;
 using MyMvcApp.Models.Interfaces;
+using WebSite.Models.DataModel;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDBDeparment,DeparmentProvider>();
 builder.Services.AddScoped<IDBEmployee,EmployeeProvider>();
 builder.Services.AddScoped<IBDResources, ResourcesProvider>();
+builder.Services.AddScoped<IDBAccount, AccountProvider>();
 
 var app = builder.Build();
 

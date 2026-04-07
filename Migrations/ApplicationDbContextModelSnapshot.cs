@@ -231,7 +231,6 @@ namespace MyMvcApp.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AccountsId"));
 
                     b.Property<DateTime>("Data")
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("EmployeeId")
@@ -254,10 +253,6 @@ namespace MyMvcApp.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("AccountsId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ResourceId");
 
                     b.ToTable("Accounts");
                 });
@@ -393,25 +388,6 @@ namespace MyMvcApp.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyMvcApp.Models.DataModel.Accounts", b =>
-                {
-                    b.HasOne("MyMvcApp.Models.DataModel.Employee", "employees")
-                        .WithMany("Accounts")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyMvcApp.Models.DataModel.Resources", "resources")
-                        .WithMany("Accounts")
-                        .HasForeignKey("ResourceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("employees");
-
-                    b.Navigation("resources");
-                });
-
             modelBuilder.Entity("MyMvcApp.Models.DataModel.Employee", b =>
                 {
                     b.HasOne("MyMvcApp.Models.DataModel.Deparment", "Deparment")
@@ -426,16 +402,6 @@ namespace MyMvcApp.Migrations
             modelBuilder.Entity("MyMvcApp.Models.DataModel.Deparment", b =>
                 {
                     b.Navigation("Employees");
-                });
-
-            modelBuilder.Entity("MyMvcApp.Models.DataModel.Employee", b =>
-                {
-                    b.Navigation("Accounts");
-                });
-
-            modelBuilder.Entity("MyMvcApp.Models.DataModel.Resources", b =>
-                {
-                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }

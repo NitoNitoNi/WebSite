@@ -25,5 +25,6 @@ public partial class Employee
     public int DeparmentId { get; set; }
     [NotMapped]
     public Deparment Deparment { get; set; } = null!;
+    [NotMapped]
     public List<Accounts> Accounts { get; set; } = new List<Accounts>();
 }
