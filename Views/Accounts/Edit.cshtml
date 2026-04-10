@@ -8,6 +8,7 @@
 
 <form method="post" action="/Accounts/EditPost">
     <input type="hidden" name="AccountsId" value="@Model.AccountsId" />
+    <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
 
     <div>
         <label>Логин</label>
@@ -55,6 +56,6 @@
 
     <div>
         <button type="submit">Сохранить</button>
-        <a href="/Accounts/Index">Отмена</a>
+        <a href="@(Model.EmployeeId > 0 ? $"/Employee/Profile/{Model.EmployeeId}" : "/Accounts/Index")">Отмена</a>
     </div>
 </form>

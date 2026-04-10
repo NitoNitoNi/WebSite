@@ -12,9 +12,6 @@
                 </div>
                 <div class="card-body">
                     <dl class="row">
-                        <dt class="col-sm-4">ID сотрудника:</dt>
-                        <dd class="col-sm-8">@Model.EmployeeId</dd>
-
                         <dt class="col-sm-4">ФИО:</dt>
                         <dd class="col-sm-8">@Model.Name</dd>
 
@@ -52,7 +49,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Название ресурса</th>
+                                    <th>Ресурс</th>
+                                    <th>URL</th>
                                     <th>Логин</th>
                                     <th>Пароль</th>
                                     <th>Дата создания</th>
@@ -64,11 +62,24 @@
                                 @foreach (var acc in Model.Accounts)
                                 {
                                     <tr>
-                                        <td>@acc.ResourceId</td>
+                                        <td>@acc.ResourceName</td>
+                                        <td><a href="@acc.ResourceUrl" target="_blank">@acc.ResourceUrl</a></td>
                                         <td>@acc.Login</td>
-                                        <td>@acc.Pass</td>
+                                        <td>
+                                            <span id="password-mask-@acc.AccountsId">•••••••</span>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary copy-pwd-btn" data-id="@acc.AccountsId">Копировать</button>
+                                        </td>
                                         <td>@acc.Data.ToString("dd.MM.yyyy HH:mm")</td>
-                                        <td>@(acc.IsActive == true ? "Активен" : "Неактивен")</td>
+                                        <td>@if (acc.IsActive == true)
+                                            {
+                                                <span class="badge bg-success">Активен</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">Неактивен</span>
+                                            }
+                                        </td>
+
                                         <td>
                                             <a href="/Accounts/Edit/@acc.AccountsId" class="btn btn-sm btn-primary">Ред.</a>
                                             <a href="/Accounts/Delete/@acc.AccountsId" class="btn btn-sm btn-danger">Уд.</a>
@@ -93,3 +104,27 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.copy-pwd-btn').forEach(button => {
+            button.addEventListener('click', async function() {
+                const accountId = this.getAttribute('data-id');
+                try {
+                    const response = await fetch(`/Accounts/GetPassword?id=${accountId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        const password = data.password;
+                        await navigator.clipboard.writeText(password);
+                        alert('Пароль скопирован в буфер обмена');
+                    } else {
+                        alert('Не удалось получить пароль');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('Ошибка при копировании');
+                }
+            });
+        });
+    </script>
+}

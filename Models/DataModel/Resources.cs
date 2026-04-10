@@ -1,9 +1,6 @@
-using System.Data.SqlTypes;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-
 namespace MyMvcApp.Models.DataModel;
 
 public partial class Resources

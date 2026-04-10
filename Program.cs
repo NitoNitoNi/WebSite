@@ -2,9 +2,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
+using MyMvcApp.Models.DataModel;
 using MyMvcApp.Models.Implementation;
 using MyMvcApp.Models.Interfaces;
-using WebSite.Models.DataModel;
+
 
 
 var builder = WebApplication.CreateBuilder(args);

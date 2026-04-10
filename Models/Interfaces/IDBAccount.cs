@@ -1,6 +1,6 @@
 using MyMvcApp.Models.DataModel;
 
-namespace WebSite.Models.DataModel
+namespace MyMvcApp.Models.DataModel
 {
     public interface IDBAccount
     {

@@ -246,8 +246,8 @@ namespace MyMvcApp.Migrations
 
                     b.Property<string>("Pass")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.Property<int>("ResourceId")
                         .HasColumnType("integer");

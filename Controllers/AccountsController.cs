@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Models.DataModel;
 using MyMvcApp.Models.Interfaces;
-using WebSite.Models.DataModel;
+using MyMvcApp.Models.Helpers;
 
 namespace MyMvcApp.Controllers
 {
@@ -38,6 +38,8 @@ namespace MyMvcApp.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPost(Accounts account)
         {
+            //if (!string.IsNullOrEmpty(account.Pass))
+                //account.Pass = EncryptionHelper.Encrypt(account.Pass);
             // Диагностика
             Console.WriteLine($"Сохранение аккаунта: Id={account.AccountsId}, Login={account.Login}, EmpId={account.EmployeeId}, ResId={account.ResourceId}");
             
@@ -52,7 +54,7 @@ namespace MyMvcApp.Controllers
                 var result = await accountProvider.SaveAccount(account);
                 Console.WriteLine($"Результат сохранения: {result}");
                 if (result)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Profile", "Employee", new { id = account.EmployeeId });
                 else
                     ModelState.AddModelError("", "Ошибка при сохранении аккаунта");
             }
@@ -85,6 +87,14 @@ namespace MyMvcApp.Controllers
         {
             await accountProvider.DeleteAccount(id);
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetPassword(int id)
+        {
+            var account = await accountProvider.GetAccount(id);
+            if (account == null) return NotFound();
+            
+            return Ok(new { password = account.Pass });
         }
     }
 }

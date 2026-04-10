@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Models.Interfaces; 
 using MyMvcApp.Models.DataModel;
-using WebSite.Models.DataModel;
+
 
 namespace MyMvcApp.Controllers
 {
@@ -10,12 +10,14 @@ namespace MyMvcApp.Controllers
         private readonly IDBEmployee employeeProvider;
         private readonly IDBDeparment deparmentProvider;
         private readonly IDBAccount accountProvider;
+        private readonly IBDResources resourcesProvider;
 
-        public EmployeeController(IDBEmployee employeeProvider, IDBDeparment deparmentProvider, IDBAccount accountProvider)
+        public EmployeeController(IDBEmployee employeeProvider, IDBDeparment deparmentProvider, IDBAccount accountProvider,IBDResources resourcesProvider)
         {
             this.employeeProvider = employeeProvider;
             this.deparmentProvider = deparmentProvider;
             this.accountProvider = accountProvider;
+            this.resourcesProvider = resourcesProvider;
         }
 
         public async Task<IActionResult> Index()
@@ -115,7 +117,21 @@ namespace MyMvcApp.Controllers
             // Загружаем аккаунты
             var accounts = await accountProvider.GetAccountsByEmployeeId(id);
             employee.Accounts = accounts ?? new List<Accounts>();
-
+            var allResources = await resourcesProvider.GetResources();
+            var resourceDict = allResources.ToDictionary(r => r.ResourcesId, r => r);
+            foreach (var acc in employee.Accounts)
+            {
+                if (resourceDict.TryGetValue(acc.ResourceId, out var res))
+                {
+                    acc.ResourceName = res.Name;
+                    acc.ResourceUrl = res.Url;
+                }
+                else
+                {
+                    acc.ResourceName = "Неизвестно";
+                    acc.ResourceUrl = "#";
+                }
+            }
             // Загружаем отдел
             if (employee.DeparmentId > 0)
             {

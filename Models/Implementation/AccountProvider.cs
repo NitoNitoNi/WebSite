@@ -2,7 +2,8 @@ using Dapper;
 using Npgsql;
 using MyMvcApp.Models.DataModel;
 using MyMvcApp.Models.Interfaces;
-using WebSite.Models.DataModel;
+using MyMvcApp.Models.Helpers;
+
 
 namespace MyMvcApp.Models.Implementation
 {
@@ -26,30 +27,47 @@ namespace MyMvcApp.Models.Implementation
             return result.ToList();
         }
 
+       
         public async Task<Accounts?> GetAccount(int id)
         {
             using var conn = CreateConnection();
             const string sql = "SELECT * FROM \"Accounts\" WHERE \"AccountsId\" = @id";
-            return await conn.QueryFirstOrDefaultAsync<Accounts>(sql, new { id });
+            var account = await conn.QueryFirstOrDefaultAsync<Accounts>(sql, new { id });
+            if (account != null && !string.IsNullOrEmpty(account.Pass))
+            {
+                Console.WriteLine($"Before decrypt: {account.Pass}");
+                var decrypted = EncryptionHelper.Decrypt(account.Pass);
+                Console.WriteLine($"After decrypt: {decrypted}");
+                account.Pass = decrypted;
+            }
+            return account;
         }
 
         public async Task<List<Accounts>> GetAccountsByEmployeeId(int employeeId)
         {
             using var conn = CreateConnection();
             const string sql = "SELECT * FROM \"Accounts\" WHERE \"EmployeeId\" = @EmployeeId ORDER BY \"Data\" DESC";
-            var result = await conn.QueryAsync<Accounts>(sql, new { EmployeeId = employeeId });
-            return result.ToList();
+            var accounts = await conn.QueryAsync<Accounts>(sql, new { EmployeeId = employeeId });
+            var list = accounts.ToList();
+            foreach (var acc in list)
+            {
+                if (!string.IsNullOrEmpty(acc.Pass))
+                    acc.Pass = EncryptionHelper.Decrypt(acc.Pass);
+            }
+            return list;
         }
 
         public async Task<bool> SaveAccount(Accounts account)
         {
             using var conn = CreateConnection();
+
             if (account.AccountsId == 0)
             {
-                // Принудительно устанавливаем текущую дату
+                // Новый аккаунт
+                if (string.IsNullOrEmpty(account.Pass))
+                    throw new ArgumentException("Пароль обязателен");
+                account.Pass = EncryptionHelper.Encrypt(account.Pass);
                 account.Data = DateTime.UtcNow;
-                Console.WriteLine($"Inserting account: Login={account.Login}, Data={account.Data}");
-
                 const string sql = @"
                     INSERT INTO ""Accounts"" (""Login"", ""Pass"", ""Data"", ""IsActive"", ""ResourceId"", ""EmployeeId"")
                     VALUES (@Login, @Pass, @Data, @IsActive, @ResourceId, @EmployeeId)";
@@ -58,6 +76,21 @@ namespace MyMvcApp.Models.Implementation
             }
             else
             {
+                // Обновление
+                string? finalPass;
+                if (string.IsNullOrEmpty(account.Pass))
+                {
+                    // Пароль не меняем – берём существующий из БД
+                    finalPass = await conn.QueryFirstOrDefaultAsync<string>(
+                        "SELECT \"Pass\" FROM \"Accounts\" WHERE \"AccountsId\" = @id",
+                        new { id = account.AccountsId });
+                }
+                else
+                {
+                    // Новый пароль – шифруем
+                    finalPass = EncryptionHelper.Encrypt(account.Pass);
+                }
+
                 const string sql = @"
                     UPDATE ""Accounts"" 
                     SET ""Login"" = @Login,
@@ -66,7 +99,15 @@ namespace MyMvcApp.Models.Implementation
                         ""ResourceId"" = @ResourceId,
                         ""EmployeeId"" = @EmployeeId
                     WHERE ""AccountsId"" = @AccountsId";
-                var rows = await conn.ExecuteAsync(sql, account);
+                var rows = await conn.ExecuteAsync(sql, new
+                {
+                    account.AccountsId,
+                    account.Login,
+                    Pass = finalPass,
+                    account.IsActive,
+                    account.ResourceId,
+                    account.EmployeeId
+                });
                 return rows > 0;
             }
         }
