@@ -58,7 +58,7 @@ namespace MyMvcApp.Models.Implementation
         {
             using (var connection = CreateConnection())
             {
-                var check = "SELECT COUNT(*) FROM \"Employees\" WHERE \"Deparment\" = @DeparmentId";
+                var check = "SELECT COUNT(*) FROM \"Employees\" WHERE \"DeparmentId\" = @DeparmentId";
                 int employeeCount = await connection.ExecuteScalarAsync<int>(check,new {DeparmentId = id});
 
                 if (employeeCount > 0)

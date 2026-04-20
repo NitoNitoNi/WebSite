@@ -46,7 +46,12 @@ namespace MyMvcApp.Models.Implementation
         public async Task<List<Accounts>> GetAccountsByEmployeeId(int employeeId)
         {
             using var conn = CreateConnection();
-            const string sql = "SELECT * FROM \"Accounts\" WHERE \"EmployeeId\" = @EmployeeId ORDER BY \"Data\" DESC";
+            const string sql = @"
+                SELECT a.* 
+                FROM ""Accounts"" a
+                INNER JOIN ""Resources"" r ON a.""ResourceId"" = r.""ResourcesId""
+                WHERE a.""EmployeeId"" = @EmployeeId AND r.""IsActive"" = true
+                ORDER BY a.""Data"" DESC";
             var accounts = await conn.QueryAsync<Accounts>(sql, new { EmployeeId = employeeId });
             var list = accounts.ToList();
             foreach (var acc in list)

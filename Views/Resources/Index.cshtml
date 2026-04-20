@@ -1,47 +1,195 @@
-@using Microsoft.AspNetCore.Authorization
-
-@{
-    ViewData["Title"] = "Список ресурсов";
-}
-
 @model List<MyMvcApp.Models.DataModel.Resources>
 
-<h2>Список отделений</h2>
-
-@if(TempData["SuccessMessage"] !=null)
-{
-    <div>@TempData["SuccessMessage"]</div>
-}
-@if(TempData["ErrorMessage"] !=null)
-{
-    <div>@TempData["ErrorMessage"]</div>
+@{
+    ViewData["Title"] = "Ресурсы";
 }
 
+<div class="container-fluid mt-4">
+    <div class="row mb-3 align-items-center">
+        <div class="col-md-6">
+            <h2 class="mb-0"><i class="bi bi-grid-3x3-gap-fill me-2"></i> Ресурсы</h2>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="/Resources/Create" class="btn btn-success btn-lg">
+                <i class="bi bi-plus-circle-fill me-2"></i> Добавить ресурс
+            </a>
+        </div>
+    </div>
 
-    <p>
-        <a href="/Resources/Create">Добавить</a>
-    </p>
+    <!-- Карточка поиска -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" asp-action="Index" class="row g-3">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="text" name="searchString" value="@ViewBag.CurrentSearch" class="form-control" placeholder="Поиск по названию ресурса..." />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-grid gap-2 d-md-flex">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Найти
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-repeat"></i> Сбросить
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <table class="table">
-    <thead>
-    <tr>
-    <th>Отделение</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (MyMvcApp.Models.DataModel.Resources resources in Model)
-    {
-        <tr>
-        <td>@resources.Name</td>
-        <td>@resources.Url</td>
-        <td>@resources.IsActive</td>
-        <td>
-        <span><a href="/Resources/Edit?id=@resources.ResourcesId">Редактировать</a></span>
-        <span><a href="/Resources/Delete?id=@resources.ResourcesId">Удалить</a></span>
-        </td>
-        </tr>
-    }
-    </tbody>
-    </table>
+    <!-- Карточка со списком ресурсов -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0 align-middle">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Название</th>
+                            <th>URL</th>
+                            <th>Активен</th>
+                            <th class="text-center">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Any())
+                        {
+                            @foreach (var res in Model)
+                            {
+                                <tr>
+                                    <td class="fw-bold">@res.ResourcesId</td>
+                                    <td><i class="bi bi-file-earmark-text me-2 text-primary"></i>@res.Name</td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(res.Url))
+                                        {
+                                            <a href="@res.Url" target="_blank" class="text-decoration-none">@res.Url</a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">—</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (res.IsActive == true)
+                                        {
+                                            <span class="badge bg-success rounded-pill">Активен</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary rounded-pill">Неактивен</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a href="/Resources/Edit/@res.ResourcesId" class="btn btn-outline-warning" title="Редактировать">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <a href="/Resources/Delete/@res.ResourcesId" class="btn btn-outline-danger" title="Удалить" onclick="return confirm('Удалить ресурс?');">
+                                                <i class="bi bi-trash3"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    <i class="bi bi-inbox fs-1 d-block"></i> Ресурсы не найдены
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @if (ViewBag.TotalPages > 1)
+        {
+            <div class="card-footer bg-white">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center mb-0">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage - 1)" asp-route-searchString="@ViewBag.CurrentSearch">
+                                    <i class="bi bi-chevron-left"></i> Назад
+                                </a>
+                            </li>
+                        }
 
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                <a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-searchString="@ViewBag.CurrentSearch">@i</a>
+                            </li>
+                        }
 
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage + 1)" asp-route-searchString="@ViewBag.CurrentSearch">
+                                    Вперёд <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f0f7ff;
+        }
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1) !important;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(13, 110, 253, 0.05);
+            transition: background-color 0.2s ease;
+        }
+        .btn-group .btn {
+            margin: 0 2px;
+        }
+        .pagination .page-link {
+            color: #0d6efd;
+        }
+        .pagination .active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0b5ed7, #084298);
+            transform: scale(1.02);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #198754, #146c43);
+            border: none;
+        }
+        .btn-success:hover {
+            transform: scale(1.02);
+        }
+    </style>
+}

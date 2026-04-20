@@ -193,3 +193,17 @@ body {
         color: #721c24;
         border: 1px solid #f5c6cb;
     }
+
+
+
+    /* Скрыть ссылку на регистрацию */
+a[href*="/Identity/Account/Register"] { display: none; }
+
+/* Скрыть ссылку "Забыли пароль?" */
+a[href*="/Identity/Account/ForgotPassword"] { display: none; }
+
+/* Скрыть чекбокс "Запомнить меня" */
+input[name="Input.RememberMe"] { display: none; }
+
+/* Если нужно скрыть ссылку на подтверждение email */
+a[href*="/Identity/Account/ConfirmEmail"] { display: none; }

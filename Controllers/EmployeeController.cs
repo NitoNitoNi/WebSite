@@ -20,12 +20,30 @@ namespace MyMvcApp.Controllers
             this.resourcesProvider = resourcesProvider;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int page = 1)
+        {
+            int pageSize = 50;
+            var employees = await employeeProvider.GetEmployees();
+            if (!string.IsNullOrEmpty(searchString))
+                employees = employees.Where(e => e.Name != null && e.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            employees = employees.OrderBy(e => e.Name).ToList();
+            int totalItems = employees.Count;
+            int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            var items = employees.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            ViewBag.CurrentSearch = searchString;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            return View(items);
+        }
+
+
+
+        /*public async Task<IActionResult> Index()
         {
             var result = await employeeProvider.GetEmployees();
             result = result.OrderBy(d=>d.Name).ToList();
             return View(result);
-        }
+        }*/
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)

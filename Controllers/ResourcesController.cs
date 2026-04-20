@@ -13,11 +13,30 @@ namespace MyMvcApp.Controllers
             _resourcesProvider = resourcesProvider;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int page = 1)
         {
-            var result = await _resourcesProvider.GetResources();
-            result = result.OrderBy(d => d.Name).ToList();
-            return View(result);
+            int pageSize = 50;
+            var resources = await _resourcesProvider.GetResources();
+
+            // Фильтрация по названию
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                resources = resources.Where(r => r.Name != null && r.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+
+            // Сортировка
+            resources = resources.OrderBy(r => r.Name).ToList();
+
+            // Пагинация
+            int totalItems = resources.Count;
+            int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+            var items = resources.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            ViewBag.CurrentSearch = searchString;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View(items);
         }
 
         [HttpGet]

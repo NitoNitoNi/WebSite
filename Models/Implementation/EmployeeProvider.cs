@@ -23,11 +23,24 @@ namespace MyMvcApp.Models.Implementation
 
         public async Task<List<Employee>> GetEmployees()
         {
-            using (var connection = CreateConnection())
-            {
-                var result = await connection.QueryAsync<Employee>("SELECT \"EmployeeId\", \"Name\", \"Position\", \"Description\", \"IsActive\", \"DeparmentId\" FROM \"Employees\"");
-                return result.ToList();
-            }
+            using var conn = CreateConnection();
+            const string sql = @"
+                SELECT e.""EmployeeId"", e.""Name"", e.""Position"", e.""Description"", e.""IsActive"", e.""DeparmentId"",
+                    d.""DeparmentId"", d.""Name""
+                FROM ""Employees"" e
+                LEFT JOIN ""Deparment"" d ON e.""DeparmentId"" = d.""DeparmentId""
+                ORDER BY e.""Name""";
+            
+            var result = await conn.QueryAsync<Employee, Deparment, Employee>(
+                sql,
+                (employee, department) =>
+                {
+                    employee.Deparment = department;
+                    return employee;
+                },
+                splitOn: "DeparmentId");
+            
+            return result.ToList();
         }
 
         public async Task<Employee> GetEmployee(int id)
