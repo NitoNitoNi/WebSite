@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Двухфакторная аутентификация";
+}
+
+<h2>Код подтверждения</h2>
+<p>На вашу электронную почту отправлен код. Введите его ниже.</p>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="code" class="form-label">Код</label>
+        <input type="text" name="code" class="form-control" autocomplete="off" required />
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="rememberMe" class="form-check-input" value="true" />
+        <label class="form-check-label">Запомнить меня</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Подтвердить</button>
+</form>

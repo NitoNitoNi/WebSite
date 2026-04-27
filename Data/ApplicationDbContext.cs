@@ -1,17 +1,21 @@
-﻿using System.Reflection;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Models.DataModel;
-using SQLitePCL;
+using MyMvcApp.Models; 
 
 namespace MyMvcApp.Data;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext(options)
+public class ApplicationDbContext : IdentityDbContext<AppUser> 
 {
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
+    }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Accounts> Accounts { get; set; }
     public DbSet<Deparment> Deparment { get; set; }
     public DbSet<Resources> Resources { get; set; }
+    public DbSet<AuditLog> AuditLogs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

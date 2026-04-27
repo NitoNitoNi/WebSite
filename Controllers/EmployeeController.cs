@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Models.Interfaces; 
 using MyMvcApp.Models.DataModel;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyMvcApp.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IDBEmployee employeeProvider;
@@ -12,12 +13,15 @@ namespace MyMvcApp.Controllers
         private readonly IDBAccount accountProvider;
         private readonly IBDResources resourcesProvider;
 
-        public EmployeeController(IDBEmployee employeeProvider, IDBDeparment deparmentProvider, IDBAccount accountProvider,IBDResources resourcesProvider)
+        private readonly IAuditService auditService;
+
+        public EmployeeController(IDBEmployee employeeProvider, IDBDeparment deparmentProvider, IDBAccount accountProvider,IBDResources resourcesProvider, IAuditService auditService)
         {
             this.employeeProvider = employeeProvider;
             this.deparmentProvider = deparmentProvider;
             this.accountProvider = accountProvider;
             this.resourcesProvider = resourcesProvider;
+            this.auditService = auditService;
         }
 
         public async Task<IActionResult> Index(string searchString, int page = 1)
@@ -68,7 +72,6 @@ namespace MyMvcApp.Controllers
         [HttpPost]
         public async Task<IActionResult> EditPost(Employee employee)
         {
-            // Удаляем ошибку валидации для свойства Deparment, если она есть
             ModelState.Remove("Deparment");
             
             var departments = await deparmentProvider.GetDeparments();
@@ -86,6 +89,10 @@ namespace MyMvcApp.Controllers
                 
                 if (result)
                 {
+                    bool isNew = employee.EmployeeId == 0;
+                    string action = isNew ? "Создание" : "Редактирование";
+                    await auditService.LogAsync(action, "Сотрудники", employee.EmployeeId, $"Сотрудник {employee.Name}, должность {employee.Position}");
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -111,8 +118,10 @@ namespace MyMvcApp.Controllers
         {
             try
             {
+                var emp = await employeeProvider.GetEmployee(id);
                 await employeeProvider.DeleteEmployee(id);
                 TempData["SuccessMessage"]="Сотрудник успешно удален";
+                await auditService.LogAsync("Удаление", "Employee", id, $"Удалён сотрудник {emp?.Name}");
             }
             catch (InvalidOperationException ex)
             {

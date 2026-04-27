@@ -1,16 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Models.DataModel;
 using MyMvcApp.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyMvcApp.Controllers
 {
+    [Authorize]
     public class ResourcesController : Controller
     {
         private readonly IBDResources _resourcesProvider;
+        private readonly IAuditService _auditService;
 
-        public ResourcesController(IBDResources resourcesProvider)
+        public ResourcesController(IBDResources resourcesProvider, IAuditService auditService)
         {
             _resourcesProvider = resourcesProvider;
+            _auditService = auditService;
         }
 
         public async Task<IActionResult> Index(string searchString, int page = 1)
@@ -60,6 +64,10 @@ namespace MyMvcApp.Controllers
                     ModelState.AddModelError("", "Не все обязательные поля заполнены");
                     return View("Edit", resources);
                 }
+                bool isNew = resources.ResourcesId == 0;
+                string action = isNew ? "Создание" : "Редактирование";
+                await _auditService.LogAsync(action, "Ресурсы", resources.ResourcesId, $"Ресурс {resources.Name}");
+
                 await _resourcesProvider.SaveResources(resources);
                 return RedirectToAction("Index");
             }
@@ -77,8 +85,11 @@ namespace MyMvcApp.Controllers
         {
             try
             {
+                var emp = await _resourcesProvider.GetResources(id);
                 await _resourcesProvider.DeleteResources(id);
                 TempData["SuccessMessage"] = "Ресурс успешно удален";
+                await _auditService.LogAsync("Удаление", "Ресурсы", id, $"Удалён ресурс {emp?.Name}");
+
             }
             catch (InvalidOperationException ex)
             {

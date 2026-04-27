@@ -26,12 +26,6 @@ namespace MyMvcApp.Models.Implementation
             using (var connection = CreateConnection())
             {
                 var result = await connection.QueryAsync<Deparment>("SELECT \"DeparmentId\", \"Name\" FROM \"Deparment\"");
-                Console.WriteLine($"GetDeparments вернул {result.ToList().Count} отделов");
-                foreach (var dept in result.ToList())
-                {
-                    Console.WriteLine($"  Отдел: {dept.DeparmentId} - {dept.Name}");
-                }
-                
                 return result.ToList();
             }
         }

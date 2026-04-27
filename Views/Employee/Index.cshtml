@@ -47,12 +47,10 @@
                 <table class="table table-hover table-striped mb-0 align-middle">
                     <thead class="table-primary">
                         <tr>
-                            <th>ID</th>
                             <th>ФИО</th>
                             <th>Должность</th>
                             <th>Отделение</th>
                             <th>Статус</th>
-                            <th class="text-center">Действия</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,8 +58,7 @@
                         {
                             @foreach (var emp in Model)
                             {
-                                <tr>
-                                    <td class="fw-bold">@emp.EmployeeId</td>
+                                <tr style="cursor: pointer;" onclick="window.location.href='/Employee/Profile/@emp.EmployeeId'">
                                     <td>@emp.Name</td>
                                     <td>@emp.Position</td>
                                     <td>@(emp.Deparment?.Name ?? "—")</td>
@@ -75,28 +72,15 @@
                                             <span class="badge bg-secondary rounded-pill">Неактивен</span>
                                         }
                                     </td>
-                                    <td class="text-center">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="/Employee/Profile/@emp.EmployeeId" class="btn btn-outline-info" title="Профиль">
-                                                <i class="bi bi-person-badge"></i>
-                                            </a>
-                                            <a href="/Employee/Edit/@emp.EmployeeId" class="btn btn-outline-warning" title="Редактировать">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <a href="/Employee/Delete/@emp.EmployeeId" class="btn btn-outline-danger" title="Удалить" onclick="return confirm('Удалить сотрудника?');">
-                                                <i class="bi bi-trash3"></i>
-                                            </a>
-                                        </div>
-                                    </td>
                                 </tr>
                             }
                         }
                         else
                         {
                             <tr>
-                                <td colspan="6" class="text-center text-muted py-4">
+                                <td colspan="4" class="text-center text-muted py-4">
                                     <i class="bi bi-inbox fs-1 d-block"></i> Сотрудники не найдены
-                                </td>
+                                 </td>
                             </tr>
                         }
                     </tbody>
@@ -142,16 +126,20 @@
 @section Styles {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
+        body {
+            background-color: #f0f7ff;
+        }
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1) !important;
+        }
         .table-hover tbody tr:hover {
-            background-color: #0d6efd;
+            background-color: rgba(13, 110, 253, 0.05);
             transition: background-color 0.2s ease;
-        }
-        .btn-group .btn {
-            margin: 0 2px;
-        }
-        .card-header {
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
         }
         .pagination .page-link {
             color: #0d6efd;
@@ -164,6 +152,21 @@
         .badge {
             font-weight: 500;
             padding: 0.35em 0.65em;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0b5ed7, #084298);
+            transform: scale(1.02);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #198754, #146c43);
+            border: none;
+        }
+        .btn-success:hover {
+            transform: scale(1.02);
         }
     </style>
 }

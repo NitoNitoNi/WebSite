@@ -25,4 +25,7 @@ public partial class Accounts
 
     [NotMapped]
     public string? ResourceUrl { get; set; }
+
+    [NotMapped]
+    public string? EmployeeName { get; set; }
 }

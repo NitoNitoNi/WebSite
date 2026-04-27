@@ -1,17 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Models.Interfaces; 
 using MyMvcApp.Models.DataModel;
-using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyMvcApp.Controllers
 {
+    [Authorize]
     public class DeparmentController : Controller
     {
         private readonly IDBDeparment deparmentProvider;
-
-        public DeparmentController(IDBDeparment deparmentProvider)
+        private readonly IAuditService auditService;
+        public DeparmentController(IDBDeparment deparmentProvider, IAuditService auditService)
         {
             this.deparmentProvider = deparmentProvider;
+            this.auditService= auditService;
         }
 
         public async Task<IActionResult> Index()
@@ -68,6 +70,9 @@ namespace MyMvcApp.Controllers
                     ModelState.AddModelError("", "Не все обязательные поля заполнены");
                     return View("Edit",deparment);
                 }
+                bool isNew = deparment.DeparmentId == 0;
+                string action = isNew ? "Создание" : "Редактирование";
+                await auditService.LogAsync(action, "Отделения", deparment.DeparmentId, $"Отделение {deparment.Name}");
                 await deparmentProvider.SaveDeparment(deparment);
                 return RedirectToAction("Index");
             }
@@ -85,8 +90,10 @@ namespace MyMvcApp.Controllers
         {
             try
             {
+                var emp = await deparmentProvider.GetDeparment(id);
+                await auditService.LogAsync("Удаление", "Отделения", id, $"Удалёно отделение {emp?.Name}");
                 await deparmentProvider.DeleteDeparment(id);
-                TempData["SuccessMessage"]="Отделение успешно удалено";
+                TempData["SuccessMessage"]="Отделение успешно удалено"; 
             }
             catch (InvalidOperationException ex)
             {

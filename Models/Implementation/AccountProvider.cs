@@ -22,9 +22,22 @@ namespace MyMvcApp.Models.Implementation
         public async Task<List<Accounts>> GetAccounts()
         {
             using var conn = CreateConnection();
-            const string sql = "SELECT * FROM \"Accounts\" ORDER BY \"Data\" DESC";
-            var result = await conn.QueryAsync<Accounts>(sql);
-            return result.ToList();
+            const string sql = @"
+                SELECT a.*, 
+                    e.""Name"" AS EmployeeName, 
+                    r.""Name"" AS ResourceName
+                FROM ""Accounts"" a
+                LEFT JOIN ""Employees"" e ON a.""EmployeeId"" = e.""EmployeeId""
+                LEFT JOIN ""Resources"" r ON a.""ResourceId"" = r.""ResourcesId""
+                ORDER BY a.""Data"" DESC";
+            var accounts = await conn.QueryAsync<Accounts>(sql);
+            var list = accounts.ToList();
+            foreach (var acc in list)
+            {
+                if (!string.IsNullOrEmpty(acc.Pass))
+                    acc.Pass = EncryptionHelper.Decrypt(acc.Pass);
+            }
+            return list;
         }
 
        

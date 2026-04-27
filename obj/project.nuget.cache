@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YltbUwfFbMA=",
+  "dgSpecHash": "p5T2QjNn5l4=",
   "success": true,
   "projectFilePath": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
   "expectedPackageFiles": [
@@ -55,11 +55,11 @@
     "/home/nito/.nuget/packages/humanizer.core.zh-cn/2.14.1/humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "/home/nito/.nuget/packages/humanizer.core.zh-hans/2.14.1/humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "/home/nito/.nuget/packages/humanizer.core.zh-hant/2.14.1/humanizer.core.zh-hant.2.14.1.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.aspnetcore.cryptography.internal/10.0.0/microsoft.aspnetcore.cryptography.internal.10.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/10.0.0/microsoft.aspnetcore.cryptography.keyderivation.10.0.0.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.aspnetcore.cryptography.internal/10.0.7/microsoft.aspnetcore.cryptography.internal.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/10.0.7/microsoft.aspnetcore.cryptography.keyderivation.10.0.7.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/10.0.0/microsoft.aspnetcore.diagnostics.entityframeworkcore.10.0.0.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/10.0.0/microsoft.aspnetcore.identity.entityframeworkcore.10.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.aspnetcore.identity.ui/10.0.0/microsoft.aspnetcore.identity.ui.10.0.0.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.aspnetcore.identity.ui/10.0.7/microsoft.aspnetcore.identity.ui.10.0.7.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.24/microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.build/17.11.48/microsoft.build.17.11.48.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.build.framework/18.0.2/microsoft.build.framework.18.0.2.nupkg.sha512",
@@ -85,20 +85,25 @@
     "/home/nito/.nuget/packages/microsoft.entityframeworkcore.sqlite/10.0.0/microsoft.entityframeworkcore.sqlite.10.0.0.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.entityframeworkcore.sqlite.core/10.0.0/microsoft.entityframeworkcore.sqlite.core.10.0.0.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.entityframeworkcore.tools/10.0.0/microsoft.entityframeworkcore.tools.10.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.3/microsoft.extensions.caching.abstractions.10.0.3.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.7/microsoft.extensions.caching.abstractions.10.0.7.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.extensions.caching.memory/10.0.3/microsoft.extensions.caching.memory.10.0.3.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.3/microsoft.extensions.configuration.abstractions.10.0.3.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.3/microsoft.extensions.dependencyinjection.10.0.3.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.3/microsoft.extensions.dependencyinjection.abstractions.10.0.3.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.configuration/10.0.7/microsoft.extensions.configuration.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.7/microsoft.extensions.configuration.abstractions.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.configuration.binder/10.0.7/microsoft.extensions.configuration.binder.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.7/microsoft.extensions.dependencyinjection.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.7/microsoft.extensions.dependencyinjection.abstractions.10.0.7.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.extensions.dependencymodel/10.0.3/microsoft.extensions.dependencymodel.10.0.3.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.fileproviders.abstractions/10.0.0/microsoft.extensions.fileproviders.abstractions.10.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.fileproviders.embedded/10.0.0/microsoft.extensions.fileproviders.embedded.10.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.identity.core/10.0.0/microsoft.extensions.identity.core.10.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.identity.stores/10.0.0/microsoft.extensions.identity.stores.10.0.0.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.logging/10.0.3/microsoft.extensions.logging.10.0.3.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.3/microsoft.extensions.logging.abstractions.10.0.3.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.options/10.0.3/microsoft.extensions.options.10.0.3.nupkg.sha512",
-    "/home/nito/.nuget/packages/microsoft.extensions.primitives/10.0.3/microsoft.extensions.primitives.10.0.3.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.diagnostics/10.0.7/microsoft.extensions.diagnostics.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.diagnostics.abstractions/10.0.7/microsoft.extensions.diagnostics.abstractions.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.fileproviders.abstractions/10.0.7/microsoft.extensions.fileproviders.abstractions.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.fileproviders.embedded/10.0.7/microsoft.extensions.fileproviders.embedded.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.identity.core/10.0.7/microsoft.extensions.identity.core.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.identity.stores/10.0.7/microsoft.extensions.identity.stores.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.logging/10.0.7/microsoft.extensions.logging.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.7/microsoft.extensions.logging.abstractions.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.options/10.0.7/microsoft.extensions.options.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.options.configurationextensions/10.0.7/microsoft.extensions.options.configurationextensions.10.0.7.nupkg.sha512",
+    "/home/nito/.nuget/packages/microsoft.extensions.primitives/10.0.7/microsoft.extensions.primitives.10.0.7.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.net.stringtools/17.11.48/microsoft.net.stringtools.17.11.48.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.visualstudio.solutionpersistence/1.0.52/microsoft.visualstudio.solutionpersistence.1.0.52.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.visualstudio.web.codegeneration/10.0.2/microsoft.visualstudio.web.codegeneration.10.0.2.nupkg.sha512",
@@ -140,5 +145,30 @@
     "/home/nito/.nuget/packages/system.security.cryptography.protecteddata/9.0.6/system.security.cryptography.protecteddata.9.0.6.nupkg.sha512",
     "/home/nito/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.4/microsoft.aspnetcore.app.ref.10.0.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1901",
+      "level": "Warning",
+      "message": "Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "projectPath": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
+      "warningLevel": 1,
+      "filePath": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
+      "libraryId": "NuGet.Packaging",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1901",
+      "level": "Warning",
+      "message": "Package 'NuGet.Protocol' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "projectPath": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
+      "warningLevel": 1,
+      "filePath": "/home/nito/Progect/WebSite/MyMvcApp.csproj",
+      "libraryId": "NuGet.Protocol",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

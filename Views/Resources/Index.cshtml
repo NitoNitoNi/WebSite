@@ -47,7 +47,6 @@
                 <table class="table table-hover table-striped mb-0 align-middle">
                     <thead class="table-primary">
                         <tr>
-                            <th>ID</th>
                             <th>Название</th>
                             <th>URL</th>
                             <th>Активен</th>
@@ -60,7 +59,6 @@
                             @foreach (var res in Model)
                             {
                                 <tr>
-                                    <td class="fw-bold">@res.ResourcesId</td>
                                     <td><i class="bi bi-file-earmark-text me-2 text-primary"></i>@res.Name</td>
                                     <td>
                                         @if (!string.IsNullOrEmpty(res.Url))
@@ -87,9 +85,11 @@
                                             <a href="/Resources/Edit/@res.ResourcesId" class="btn btn-outline-warning" title="Редактировать">
                                                 <i class="bi bi-pencil-square"></i>
                                             </a>
-                                            <a href="/Resources/Delete/@res.ResourcesId" class="btn btn-outline-danger" title="Удалить" onclick="return confirm('Удалить ресурс?');">
-                                                <i class="bi bi-trash3"></i>
-                                            </a>
+                                            @if (User.IsInRole("Admin")){
+                                                <a href="/Resources/Delete/@res.ResourcesId" class="btn btn-outline-danger" title="Удалить" onclick="return confirm('Удалить ресурс?');">
+                                                    <i class="bi bi-trash3"></i>
+                                                </a>
+                                            }
                                         </div>
                                     </td>
                                 </tr>

@@ -51,32 +51,31 @@
 
                         <!-- Отделение (выпадающий список) -->
                         <div class="mb-4">
-                            <label class="form-label fw-semibold">
-                                <i class="bi bi-building-fill text-primary me-1"></i> Отделение
-                            </label>
-                            <select name="DeparmentId" class="form-select form-select-lg rounded-3">
-                                <option value="">-- Выберите отделение --</option>
-                                @if (ViewBag.Departments != null)
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-building text-primary me-1"></i> Отделение
+                        </label>
+                        <select name="DeparmentId" class="form-select form-select-lg rounded-3 select2" required>
+                            <option value="">-- Выберите отделение --</option>
+                            @if (ViewBag.Departments != null)
+                            {
+                                var depts = ViewBag.Departments as List<MyMvcApp.Models.DataModel.Deparment>;
+                                if (depts != null)
                                 {
-                                    var depts = ViewBag.Departments as List<MyMvcApp.Models.DataModel.Deparment>;
-                                    if (depts != null)
+                                    foreach (var dept in depts)
                                     {
-                                        foreach (var dept in depts)
+                                        if (Model.DeparmentId == dept.DeparmentId)
                                         {
-                                            if (Model.DeparmentId == dept.DeparmentId)
-                                            {
-                                                <option value="@dept.DeparmentId" selected>@dept.Name</option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@dept.DeparmentId">@dept.Name</option>
-                                            }
+                                            <option value="@dept.DeparmentId" selected>@dept.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@dept.DeparmentId">@dept.Name</option>
                                         }
                                     }
                                 }
-                            </select>
-                            <span class="text-danger small">@Html.ValidationMessageFor(m => m.DeparmentId)</span>
-                        </div>
+                            }
+                        </select>
+                    </div>
 
                         <!-- Кнопки действий -->
                         <div class="d-flex justify-content-between gap-3 mt-4">
@@ -95,6 +94,7 @@
 </div>
 
 @section Styles {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body {
@@ -128,4 +128,17 @@
             border-color: #0d6efd;
         }
     </style>
+}
+    @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Выберите отделение",
+                allowClear: true,
+                width: '100%',
+                language: "ru"
+            });
+        });
+    </script> 
 }

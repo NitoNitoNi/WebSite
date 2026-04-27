@@ -81,8 +81,8 @@
                                         </td>
 
                                         <td>
-                                            <a href="/Accounts/Edit/@acc.AccountsId" class="btn btn-sm btn-primary">Ред.</a>
-                                            <a href="/Accounts/Delete/@acc.AccountsId" class="btn btn-sm btn-danger">Уд.</a>
+                                            <a href="/Accounts/Edit/@acc.AccountsId?returnUrl=@Context.Request.Path" class="btn btn-sm btn-primary">Ред.</a>
+                                            <a href="/Accounts/Delete/@acc.AccountsId?returnUrl=@Context.Request.Path" class="btn btn-sm btn-danger">Уд.</a>
                                         </td>
                                     </tr>
                                 }
@@ -99,7 +99,11 @@
             <div class="mt-3">
                 <a href="/Employee/Edit/@Model.EmployeeId" class="btn btn-warning">Редактировать</a>
                 <a href="/Employee/Index" class="btn btn-secondary">Назад</a>
-                <a href="/Accounts/Create?employeeId=@Model.EmployeeId" class="btn btn-success">Создать аккаунт</a>
+                <a href="/Accounts/Create?employeeId=@Model.EmployeeId&returnUrl=@Context.Request.Path" class="btn btn-success">Создать аккаунт</a>
+                @if (User.IsInRole("Admin")){
+                    <a href="/Employee/Delete/@Model.EmployeeId" class="btn btn-outline-danger" title="Удалить" onclick="return confirm('Удалить сотрудника?');">Удалить сотрудника</a>
+                }
+                
             </div>
         </div>
     </div>

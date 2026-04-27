@@ -1,13 +1,41 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MyMvcApp.Models;
+using MyMvcApp.Models.DataModel;
+using MyMvcApp.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyMvcApp.Controllers;
-
+[Authorize]
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    private readonly IDBEmployee _employeeProvider;
+    private readonly IDBDeparment _deparmentProvider;
+    private readonly IBDResources _resourceProvider;
+    private readonly IDBAccount _accountProvider;
+
+    public HomeController(
+        IDBEmployee employeeProvider,
+        IDBDeparment deparmentProvider,
+        IBDResources resourceProvider,
+        IDBAccount accountProvider)
     {
+        _employeeProvider = employeeProvider;
+        _deparmentProvider = deparmentProvider;
+        _resourceProvider = resourceProvider;
+        _accountProvider = accountProvider;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var employees = await _employeeProvider.GetEmployees();
+        var departments = await _deparmentProvider.GetDeparments();
+        var resources = await _resourceProvider.GetResources();
+        var accounts = await _accountProvider.GetAccounts();
+
+        ViewBag.EmployeeCount = employees.Count;
+        ViewBag.DepartmentCount = departments.Count;
+        ViewBag.ResourceCount = resources.Count;
+        ViewBag.AccountCount = accounts.Count;
+
         return View();
     }
 
@@ -16,9 +44,9 @@ public class HomeController : Controller
         return View();
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    [Authorize]
+    public IActionResult Instructions()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View();
     }
 }

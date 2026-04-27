@@ -1,31 +1,179 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Панель управления";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-<div class="text-content">
-        <table >
-            <tr>
-                <td style="width: 70px;">
-                    <p class="dis-1" >🕔График работы поликлиники</p>
-                </td>
-                <td>
-                    <p class="dis-1" >Почтовый адрес</p>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 70px;">
-                    <p class="dis-2">Общее время работы поликлиники: с 7:30 до 19:00 (будни)</p>
-                </td>
-                <td>
-                    <p class="dis-2">г.Котлас, пр. Мира, 36, корпус 1.</p>
-                </td>
-            </tr>
-        </table>
-        
-    
-        
+<div class="container-fluid px-4">
+    <!-- Градиентный баннер -->
+    <div class="row mt-3 mb-5">
+        <div class="col-12">
+            <div class="p-5 text-white rounded-4 shadow-lg" style="background: linear-gradient(135deg, #0d6efd 0%, #0099ff 100%);">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <div>
+                        <h1 class="display-4 fw-bold">Хранитель</h1>
+                        <p class="lead mb-0">Система управления аккаунтами и ресурсами</p>
+                        <p class="mt-2 opacity-75">ГБУЗ АО «Котласская ЦГБ»</p>
+                    </div>
+                    <div class="mt-3 mt-md-0">
+                        <i class="bi bi-shield-lock-fill" style="font-size: 5rem; opacity: 0.3;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Карточки статистики (счётчики) -->
+    <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-1">Сотрудники</p>
+                            <h2 class="fw-bold mb-0">@ViewBag.EmployeeCount</h2>
+                        </div>
+                        <div class="rounded-circle bg-primary bg-opacity-10 p-3">
+                            <i class="bi bi-people-fill text-primary fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-1">Отделения</p>
+                            <h2 class="fw-bold mb-0">@ViewBag.DepartmentCount</h2>
+                        </div>
+                        <div class="rounded-circle bg-success bg-opacity-10 p-3">
+                            <i class="bi bi-building-fill text-success fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-1">Ресурсы</p>
+                            <h2 class="fw-bold mb-0">@ViewBag.ResourceCount</h2>
+                        </div>
+                        <div class="rounded-circle bg-info bg-opacity-10 p-3">
+                            <i class="bi bi-grid-3x3-gap-fill text-info fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <p class="text-muted mb-1">Аккаунты</p>
+                            <h2 class="fw-bold mb-0">@ViewBag.AccountCount</h2>
+                        </div>
+                        <div class="rounded-circle bg-warning bg-opacity-10 p-3">
+                            <i class="bi bi-person-badge-fill text-warning fs-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Быстрые действия (плитка) -->
+    <div class="row g-4">
+        <div class="col-12">
+            <h4 class="mb-3"><i class="bi bi-lightning-charge-fill me-2"></i> Быстрые действия</h4>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <a href="/Employee/Create" class="text-decoration-none">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100 transition-hover">
+                    <div class="card-body py-4">
+                        <i class="bi bi-person-plus-fill fs-1 text-primary"></i>
+                        <h5 class="mt-2 mb-0">Добавить сотрудника</h5>
+                        <small class="text-muted">Новый сотрудник</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <a href="/Accounts/Create" class="text-decoration-none">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100 transition-hover">
+                    <div class="card-body py-4">
+                        <i class="bi bi-key-fill fs-1 text-warning"></i>
+                        <h5 class="mt-2 mb-0">Создать аккаунт</h5>
+                        <small class="text-muted">Учётная запись</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <a href="/Resources/Create" class="text-decoration-none">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100 transition-hover">
+                    <div class="card-body py-4">
+                        <i class="bi bi-plus-circle-fill fs-1 text-success"></i>
+                        <h5 class="mt-2 mb-0">Добавить ресурс</h5>
+                        <small class="text-muted">Медицинский портал</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <a href="/Deparment/Create" class="text-decoration-none">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100 transition-hover">
+                    <div class="card-body py-4">
+                        <i class="bi bi-building-add fs-1 text-info"></i>
+                        <h5 class="mt-2 mb-0">Добавить отделение</h5>
+                        <small class="text-muted">Структура</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Дополнительная информация (последние действия или новости) -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    <h5><i class="bi bi-info-circle-fill me-2"></i> О системе</h5>
+                    <p class="text-muted mb-0">
+                        «Хранитель» — безопасное хранилище учётных записей сотрудников для доступа к медицинским информационным системам.
+                        Все пароли шифруются, доступ по ролям, журнал действий.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .transition-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .transition-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1) !important;
+        }
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .rounded-circle {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+}
